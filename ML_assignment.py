@@ -1,21 +1,19 @@
-# Import necessary modules
 from sklearn.neighbors import NearestNeighbors
-import numpy as np
 
 # Step 1: Create the dataset
 # Each person has 2 features: Age and Years of Experience
-X = np.array([
+X = [
     [22, 2],  # Person 1
-    [30, 5],  # Person 2 
+    [30, 5],  # Person 2
     [25, 3],  # Person 3
     [28, 4],  # Person 4
     [35, 10], # Person 5
     [24, 1],  # Person 6
     [32, 6]   # Person 7
-])
+]
 
 # Salaries corresponding to each person
-y = np.array([
+y = [
     30000,  # Person 1
     45000,  # Person 2
     38000,  # Person 3
@@ -23,10 +21,10 @@ y = np.array([
     70000,  # Person 5
     28000,  # Person 6
     50000   # Person 7
-])
+]
 
 # Step 2: Define the new person
-new_person = np.array([[26, 3]])  # Age 26, 3 years of experience
+new_person = [[26, 3]]  # Age 26, 3 years of experience
 
 # Step 3: Create and fit the KNN model
 # We ask for n_neighbors = 7 (because part B asks for 7 neighbors)
@@ -39,7 +37,7 @@ distances, indices = knn.kneighbors(new_person)
 # Step 5: Print distances, labels (salaries), and indices
 print("Distances to neighbors:", distances[0])
 print("Indices of neighbors:", indices[0])
-print("Salaries (labels) of neighbors:", y[indices[0]])
+print("Salaries (labels) of neighbors:", [y[i] for i in indices[0]])
 
 # Step 6: (Optional) Predict salary based on the 5 nearest neighbors for part A
 # Find 5 nearest neighbors
@@ -48,8 +46,8 @@ knn_5.fit(X)
 distances_5, indices_5 = knn_5.kneighbors(new_person)
 
 # Get their salaries
-salaries_5 = y[indices_5[0]]
+salaries_5 = [y[i] for i in indices_5[0]]
 
 # Predict the salary by taking the mean of the 5 nearest salaries
-predicted_salary = np.mean(salaries_5)
+predicted_salary = sum(salaries_5) / len(salaries_5)
 print("Predicted Salary for new person (based on 5 neighbors):", predicted_salary)
