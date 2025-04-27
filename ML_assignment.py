@@ -32,7 +32,7 @@ knn = NearestNeighbors(n_neighbors=7, metric='euclidean')  # Use Euclidean dista
 knn.fit(age_experience_data)  # Fit the model with the data
 
 # Step 4: Find the 7 nearest neighbors
-distasalariesnces, indices = knn.kneighbors(new_person)
+distances, indices = knn.kneighbors(new_person)
 
 # Step 5: Print distances, labels (salaries), and indices
 print("Distances to neighbors:", distances[0])
